@@ -1,0 +1,34 @@
+@startuml
+!theme carbon-gray
+
+start
+
+if (AIO is ITAR restricted) then (yes)
+    :Pursue COTS Composite Solution;
+    stop
+else (no)
+    if (Budget-driven timeline push > COTS Composite solution development-driven timeline [[http://plantuml.com/sequence src]]) then (yes)
+        note
+            There is very little uncertainty in budget,
+            but high uncertainty in development time
+        endnote
+        :Pursue COTS Composite Solution;
+        stop
+    else (no)
+        :Investigate image quality vs pointing accuracy trade;
+        if (AIO satisfies pointing accuracy requirement) then (yes)
+            if (AIO satisfis slew rate requirement) then (yes)
+                :something;
+            else (no)
+                :something;
+            endif
+        else (no)
+            :something;
+        endif
+    endif
+endif
+
+':Pivot scientific requirements
+':Pivot payload design to snapshot
+
+@enduml
