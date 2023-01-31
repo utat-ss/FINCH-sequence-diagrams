@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="iVqs05ysCgDMvs5f8VoH" name="Page-1">
-        <mxGraphModel dx="1923" dy="1014" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" background="none" math="0" shadow="0">
+        <mxGraphModel dx="1538" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -26,7 +26,7 @@
                     <mxGeometry x="950" y="570" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="14" value="SOLIDWORKS" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="860" y="690" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="820" y="660" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="15" value="NX" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1030" y="730" width="120" height="60" as="geometry"/>
@@ -46,13 +46,13 @@
                 <mxCell id="20" value="Notion" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="890" y="800" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="CODE V" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="22" value="CODE V" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="870" y="290" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" value="SigFit" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="23" value="SigFit" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="910" y="350" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="Zemax" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="24" value="Zemax" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1020" y="440" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
