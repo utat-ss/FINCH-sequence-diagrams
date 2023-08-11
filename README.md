@@ -1,2 +1,2 @@
-# systems-diagrams
-Collection of diagrams relevant to systems work.
+# FINCH Sequence Diagrams
+Collection of sequence diagrams relevant to the FINCH mission.
