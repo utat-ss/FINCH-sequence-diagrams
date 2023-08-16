@@ -12,7 +12,7 @@ sequenceDiagram
 
     Operator->>MCC: Load acquisition params
     alt Contact
-        MCC->>RF: Send aquisition params
+        MCC->>RF: Send acquisition params
 
         RF->>OBC: Schedule acquisition
 
