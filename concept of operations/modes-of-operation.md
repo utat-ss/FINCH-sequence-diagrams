@@ -1,11 +1,7 @@
----
-title: Simple sample
----
-stateDiagram-v2
-    [*] --> Still
-    Still --> [*]
+# Modes of Operation
 
-    Still --> Moving
-    Moving --> Still
-    Moving --> Crash
-    Crash --> [*]
+```mermaid
+
+
+
+```
