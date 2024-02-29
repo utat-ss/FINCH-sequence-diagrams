@@ -4,17 +4,19 @@
 stateDiagram-v2
     [*] --> PPODState: Mission Commences
     PPODState --> SpacecraftEjection: Spacecraft integrated in\nP-POD on launch vehicle before deployment
-    SpacecraftEjection --> PassiveState: Spacecraft recently ejected\nfrom vehicle
-    PassiveState --> PreparationForImaging: Spacecraft is idle,\nprocesses that are not time-sensitive\nare carried out
+    SpacecraftEjection --> PassiveState
+    PassiveState --> PreparationForImaging
     PreparationForImaging --> Imaging: orient spacecraft\nappropriately, get ready
-    Imaging --> PreparationForImaging: Capture data
-    PassiveState --> EndOfMission: spacecraft enters low\npower state, mission ends
+    Imaging --> PassiveState: Capture data
     PassiveState --> PrepForTransmission: Spacecraft is idle,\nprocesses that are not time-sensitive\nare carried out
     PrepForTransmission --> DataLink: orient spacecraft\nappropriately
-    DataLink --> TTAndCLink: high speed, transmits images
-    TTAndCLink --> DataLink: Lower speed, for\nspacecraft status
+    PrepForTransmission --> TTAndCLink: orient spacecraft\nappropriately
 
-    SpacecraftEjection --> CriticalFault: Critical Fault Occurs
+    TTAndCLink --> [*]: high speed, transmits images
+    DataLink --> [*]: lower speed, for\nspacecraft status
+
+    PassiveState --> EndOfMission: spacecraft enters low\npower state, mission ends
+
     CriticalFault --> RecoveryState: Run error diagnostics,\nreturn spacecraft to normal
     RecoveryState --> PassiveState: Run error diagnostics,\nreturn spacecraft to normal
 
