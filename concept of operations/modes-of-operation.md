@@ -1,26 +1,31 @@
 # Modes of Operation
 
 ```mermaid
-stateDiagram-v2
-    [*] --> PPODState: Mission Commences
-    PPODState --> SpacecraftEjection: Spacecraft integrated in\nP-POD on launch vehicle before deployment
-    SpacecraftEjection --> PassiveState
-    PassiveState --> PreparationForImaging
-    PreparationForImaging --> Imaging: orient spacecraft\nappropriately, get ready
-    Imaging --> PassiveState: Capture data
-    PassiveState --> PrepForTransmission: Spacecraft is idle,\nprocesses that are not time-sensitive\nare carried out
-    PrepForTransmission --> DataLink: orient spacecraft\nappropriately
-    PrepForTransmission --> TTAndCLink: orient spacecraft\nappropriately
 
-    TTAndCLink --> [*]: high speed, transmits images
-    DataLink --> [*]: lower speed, for\nspacecraft status
-
-    PassiveState --> EndOfMission: spacecraft enters low\npower state, mission ends
-
-    CriticalFault --> RecoveryState: Run error diagnostics,\nreturn spacecraft to normal
-    RecoveryState --> PassiveState: Run error diagnostics,\nreturn spacecraft to normal
-
-
-
+flowchart
+ K(Non-Passive
+ Operations)
+ Z(Launch and Early Orbit Phase - LEOP) -->
+ A{Command} <---> |Critical Priority|B(Imaging)
+ A <---> |High Priority|C(Downlinking)
+ A <---> |Medium Priority|D(Processing)
+ A <---> |Low Priority|E(Charging)
+ B --> Y
+ C -->Y[Safety]
+ D -->Y
+ E -->Y
+ R[Passive
+ Operations]
+ Y --> S(Return to Command)
+style Z fill:#FFFFFF,stroke:#000000,color:#000000
+style A fill:#000000,stroke:#000000,color:#FFFFFF
+style B fill:#6A0DAD,stroke:#6A0DAD,color:#FFFFFF
+style C fill:#6A0DAD,stroke:#6A0DAD,color:#FFFFFF
+style D fill:#0A2F6B,stroke:#0A2F6B,color:#FFFFFF
+style E fill:#0A2F6B,stroke:#0A2F6B,color:#FFFFFF
+style Y fill:#FFFFFF,stroke:#000000,color:#000000
+style S fill:#000000,stroke:#000000,color:#FFFFFF
+style K fill:#6A0DAD,stroke:#6A0DAD,color:#FFFFFF
+style R fill:#0A2F6B,stroke:#0A2F6B,color:#FFFFFF
 
 ```
