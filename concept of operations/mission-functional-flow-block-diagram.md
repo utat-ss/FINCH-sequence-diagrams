@@ -12,22 +12,22 @@ sequenceDiagram
 
     LEOP->>Command: Launch, deploy and detumble
 
-    Command->>Charging: orient solar panels to maximize sun coverage
+    Command->>Charging: when low battery
     Charging--)Safety: error/fault
     Charging->>Command: when batteries are sufficiently charged
   
 
-    Command->>Imaging: perform imaging tasks
+    Command->>Imaging: as scheduled by ground
     Imaging--)Safety: error/fault
     Imaging->>Command: done with imaging
 
 
-    Command->>Processing: process images
+    Command->>Processing: after imaging terminates
     Processing--)Safety: error/fault
     Processing->>Command: done with processing
     
     
-    Command->>Downlinking: downlink data to ground station
+    Command->>Downlinking: when received command from ground station
     Downlinking--)Safety: error/fault
     Downlinking->>Command: done with downlinking
 
