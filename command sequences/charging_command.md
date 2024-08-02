@@ -8,7 +8,7 @@ sequenceDiagram
         participant RF
         participant OBC as Onboard Computer (OBC)
         participant SolarPanels
-        participant BMS as Battery Management System (BMS)
+        participant Power
         participant ADCS
         participant PAY
     end
