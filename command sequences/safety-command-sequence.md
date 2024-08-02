@@ -1,4 +1,4 @@
-# Testing Image Acquisition Command Sequence
+# Safety Command Sequence 
 ```mermaid
 sequenceDiagram
 autonumber %% numbers the messages 
