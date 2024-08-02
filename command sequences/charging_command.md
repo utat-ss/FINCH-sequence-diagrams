@@ -8,7 +8,7 @@ sequenceDiagram
         participant RF
         participant OBC as Onboard Computer (OBC)
         participant SolarPanels
-        participant Power
+        participant BatteryPack as BP
         participant ADCS
         participant PAY
     end
@@ -17,10 +17,10 @@ sequenceDiagram
     MCC->>RF: Transmit command to CubeSat
     RF->>OBC: Relay command to OBC
     OBC->>SolarPanels: Activate solar panels
-    SolarPanels->>BMS: Start power generation
-    BMS->>OBC: Monitor charging process
+    SolarPanels->>BP: Start power generation
+    BP->>OBC: Monitor charging process
     OBC->>ADCS: Adjust orientation for optimal charging
-    BMS->>OBC: Report charging status
+    BP->>OBC: Report charging status
     OBC->>RF: Transmit status to MCC
     RF->>MCC: Relay status to MCC
     MCC->>Operator: Confirm charging initiated
