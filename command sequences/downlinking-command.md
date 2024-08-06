@@ -23,35 +23,30 @@ sequenceDiagram
             OBC->>RF: Prepare to downlink
             ADCS-->>OBC: Ready
             RF-->>OBC: Ready
+            OBC->>ADCS: Trigger downlink maneuver   #unsure about this
 
             alt Downlink telemetry data
-                OBC->>ADCS: Trigger downlink maneuver
                 OBC->>RF: Telemetry data
                 OBC->>RF: Trigger downlink
-                RF->>MCC/GS: Downlink telemetry data
-                ADCS-->>OBC: Done
-                OBC->>RF: End downlink
+                RF->>MCC/GS: Downlink telemetry data 
             end
 
             alt Downlink image data
-                PAY->>PAY: Verify image compression
-                OBC->>ADCS: Trigger downlink maneuver
-                OBC->>PAY: Send image to RF
+                #should we be verifying image compression here? what's the criteria for downlinking an image?
+                OBC->>PAY: Send image data to transceiver
                 PAY->>RF: Image data
                 OBC->>RF: Trigger downlink
-                ADCS-->>OBC: Done
                 RF->>MCC/GS: Downlink image data
-                ADCS-->>OBC: Done
-                OBC->>RF: End downlink
             end
 
+            ADCS-->>OBC: Done
+            OBC->>RF: End downlink
+            
         else Downlink conditions could not be met
             OBC->>OBC: Log error
         end
     
-    
-    RF-->>OBC: Done  
-    
+        RF-->>OBC: Done  
     end
 
 ```
