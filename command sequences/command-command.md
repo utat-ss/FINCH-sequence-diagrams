@@ -10,40 +10,48 @@ sequenceDiagram
         participant PAY
     end
 
-    Operator->>MCC: Load acquisition params
-    alt Contact
-        MCC->>RF: Send acquisition params
+    OBC->>ADCS: orient to command attitude
 
-        RF->>OBC: Schedule acquisition
+alt Health Check
+    OBC->>OBC: run system health checks
+else Error
+    OBC->>OBC: enter safety mode
+    OBC->>OBC: log error
+end
 
-        alt Acquisition conditions met
-            OBC->>ADCS: Orient to init attitude
-            OBC->>PAY: Cool camera to init temp
-            ADCS-->>OBC: Ready
-            PAY-->>OBC: Ready
+alt Contact
 
-            OBC->>ADCS: Trigger acquisition maneuver
-            OBC->>PAY: Trigger image acquisition
-            ADCS-->>OBC: Done
-            OBC->>PAY: End image acquisition
-            PAY->>PAY: Compress image
+    MCC->>RF: transmit ping
+    RF->>OBC: trigger ping
 
+    OBC->>RF: telemetry Data
+    OBC->>RF: trigger downlink
+    RF->>MCC: data downlink
 
-        else Acquisition conditions could not be met
-            OBC->>OBC: Log error
+else Error
+    OBC->>OBC: enter safety mode
+    OBC->>OBC: log error
 
-        end
-    end
+end
 
-    alt Contact
-        OBC->>PAY: Send image to RF
-        PAY->>RF: Image data
-        OBC->>RF: Telemetry data
-        OBC->>RF: Trigger downlink
-        RF->>MCC: Data downlink
-        RF-->>OBC: Done
-    end
+    Operator->>MCC: load mode of operation change
 
+alt Contact
+    MCC->>RF: transmit mode of operation change
+    RF->>OBC: trigger/schedule mode of operation change
+    OBC->>OBC: run mode of operation sequence
+
+    OBC->>RF: telemetry Data
+    OBC->>RF: trigger downlink
+    RF->>MCC: data downlink
+
+else Error
+    OBC->>OBC: enter safety mode
+    OBC->>OBC: log error
+
+end
+
+ 
     
 
 ```
