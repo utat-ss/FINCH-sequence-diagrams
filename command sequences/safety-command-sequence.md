@@ -1,23 +1,22 @@
 # Safety Command Sequence 
 ```mermaid
 sequenceDiagram
-autonumber %% numbers the messages 
     Actor Operator
     participant MCC
-    box FINCH
-        participant RF
-        participant OBC
-        participant ADCS
-        participant PAY
-    end
-    Operator->>MCC: message 1
-    alt reply to this
-        MCC->>RF: message 2
-    end
-    alt other conversation
-            OBC->>ADCS: message 3
-            ADCS-->>OBC: Ready
-    else conditions could not be met
-            OBC->>OBC: Log error
-    end
+    participant RF
+    participant CDH
+    participant ADCS
+    participant PAY
+    participant POWER
+    participant THERMAL
+    participant NETWORK
+    MCC ->> RF: Activate RF Handler
+    MCC ->> Payload: Activate Payload Handler
+    MCC ->> ADCS: Activate ADCS Handler
+    MCC ->> CDH: Activate EPS Handler 
+    MCC ->> POWER: Maintain power supply - turn off payload and minimize power consumption 
+    MCC ->> THERMAL: Ensure Thermal Safe Status- poll thermistors
+    MCC ->> NETWORK: Maintain ground link -receiver on and poll frequently
+    MCC ->> ADCS: Maintain Nadir's Pointing Attitude- pole ADCS module
+    
 ```
