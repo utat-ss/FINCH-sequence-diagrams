@@ -7,23 +7,29 @@ sequenceDiagram
     box FINCH
         participant RF
         participant OBC as Onboard Computer (OBC)
-        participant SolarPanels
-        participant PowerController
-        participant BatteryPack
-        participant ADCSController
+        participant ADCS
+        participant Power
     end
 
     Operator->>MCC: Send charging command
     MCC->>RF: Transmit command to CubeSat
     RF->>OBC: Relay command to OBC
-    OBC->>PowerController: Activate solar panels
-    PowerController->>SolarPanels: Start generating power
-    SolarPanels->>BatteryPack: Store generated power
-    BatteryPack->>OBC: Report charging status
-    OBC->>ADCSController: Adjust orientation for optimal charging
-    ADCSController->>OBC: Confirm orientation adjusted
-    OBC->>RF: Transmit status to MCC
-    RF->>MCC: Relay status to MCC
-    MCC->>Operator: Confirm charging initiated
+    alt No error
+        OBC->>ADCS: Adjust orientation to sun pointing
+        ADCS->>OBC: Confirm orientation adjusted
+        Note right of ADCS: Orientation adjusted towards sun vector
+        OBC->>Power: Activate power system
+        Power->>OBC: Report charging status
+        OBC->>OBC: Trigger downlink
+        OBC->>RF: Telemetry data
+        RF->>MCC: Data downlink
+        MCC->>Operator: Confirm charging initiated
+    else Charging status error
+        OBC->>OBC: Log error
+        OBC->>RF: Transmit error status to MCC
+        RF->>MCC: Relay error status to MCC
+        MCC->>Operator: Report error
+    end
+
 
 
