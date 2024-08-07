@@ -11,7 +11,7 @@ sequenceDiagram
         participant Power
     end
 
-    Operator->>MCC/GS : Send charging command
+    Operator->>MCC/GS : Load charging command
     MCC/GS ->>RF: Transmit command to CubeSat
     RF->>OBC: Relay command to OBC
     alt contact
