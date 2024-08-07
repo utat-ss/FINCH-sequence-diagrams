@@ -14,7 +14,7 @@ sequenceDiagram
     Operator->>MCC: Send charging command
     MCC->>RF: Transmit command to CubeSat
     RF->>OBC: Relay command to OBC
-    alt No error
+    alt contact
         OBC->>ADCS: Adjust orientation to sun pointing
         ADCS->>OBC: Confirm orientation adjusted
         OBC->>Power: Activate power system
