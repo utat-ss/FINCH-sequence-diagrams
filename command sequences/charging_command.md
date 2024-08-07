@@ -3,7 +3,7 @@
 ```mermaid
 sequenceDiagram
     actor Operator
-    participant MCC
+    participant MCC/GS
     box FINCH
         participant RF
         participant OBC as Onboard Computer (OBC)
