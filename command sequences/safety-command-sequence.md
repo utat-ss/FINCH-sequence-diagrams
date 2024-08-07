@@ -9,6 +9,7 @@ sequenceDiagram
     participant POWER
     participant THERMAL
     participant MECH
+    Operator ->> MCC: Enter safety mode 
     MCC ->> POWER: Maintain power supply - turn off payload and minimize power consumption 
     MCC ->> THERMAL: Ensure Thermal Safe Status- poll thermistors
     MCC ->> RF: Maintain ground link -receiver on and poll frequently
