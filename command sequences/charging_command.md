@@ -6,7 +6,7 @@ sequenceDiagram
     participant MCC/GS 
     box FINCH
         participant RF
-        participant OBC as Onboard Computer (OBC)
+        participant OBC 
         participant ADCS
         participant Power
     end
