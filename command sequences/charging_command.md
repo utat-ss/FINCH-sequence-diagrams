@@ -17,12 +17,13 @@ sequenceDiagram
     alt No error
         OBC->>ADCS: Adjust orientation to sun pointing
         ADCS->>OBC: Confirm orientation adjusted
-        Note right of ADCS: Orientation adjusted towards sun vector
         OBC->>Power: Activate power system
         Power->>OBC: Report charging status
-        OBC->>OBC: Trigger downlink
-        OBC->>RF: Telemetry data
+   OBC->>RF: Telemetry data
+        OBC->>RF: Trigger downlink
         RF->>MCC: Data downlink
+        RF-->>OBC: Done
+
         MCC->>Operator: Confirm charging initiated
     else Charging status error
         OBC->>OBC: Log error
