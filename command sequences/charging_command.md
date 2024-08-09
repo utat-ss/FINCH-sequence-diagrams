@@ -27,8 +27,10 @@ sequenceDiagram
         MCC/GS ->>Operator: Confirm charging initiated
     else Charging status error
         OBC->>OBC: Log error
-        OBC->>RF: Transmit error status to MCC
-        RF->>MCC/GS : Relay error status to MCC
+        OBC->>RF: Telemetry data
+        OBC->>RF: Trigger downlink
+        RF->>MCC/GS : Data downlink
+        RF-->>OBC: Done
         MCC/GS ->>Operator: Report error
     end
 
