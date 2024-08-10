@@ -1,11 +1,14 @@
 ```mermaid
-participant MCC
-    participant RF
-    participant OBC
-    participant ADCS
-    participant PAY
-    participant Other
 
+sequenceDiagram
+    Actor Operator
+    participant MCC
+    box FINCH
+        participant RF
+        participant OBC
+        participant ADCS
+        participant PAY
+    end
     MCC->>RF: Command Downlink
     activate RF
     RF->>RF: Decode & Verify
