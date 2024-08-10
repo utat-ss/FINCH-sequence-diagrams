@@ -19,11 +19,10 @@ sequenceDiagram
         RF->>OBC: Schedule downlink
         
         alt Downlink conditions met
-            OBC->>ADCS: Orient to init attitude
+            OBC->>ADCS: Orient to fine-pointing mode
             OBC->>RF: Prepare to downlink
             ADCS-->>OBC: Ready
             RF-->>OBC: Ready
-            OBC->>ADCS: Trigger downlink maneuver   #unsure about this
 
             alt Downlink telemetry data
                 OBC->>RF: Telemetry data
@@ -32,7 +31,7 @@ sequenceDiagram
             end
 
             alt Downlink image data
-                #should we be verifying image compression here? what's the criteria for downlinking an image?
+                # what's the criteria for downlinking an image?
                 OBC->>PAY: Send image data to transceiver
                 PAY->>RF: Image data
                 OBC->>RF: Trigger downlink
