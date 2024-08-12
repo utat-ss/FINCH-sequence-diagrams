@@ -43,6 +43,7 @@ sequenceDiagram
             
         else Downlink conditions could not be met
             OBC->>OBC: Log error
+            OBC->>OBC: Enter "Safety" sequence
         end
     
         RF-->>OBC: Done  
