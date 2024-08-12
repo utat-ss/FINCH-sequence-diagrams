@@ -2,31 +2,26 @@
 
 sequenceDiagram
     Actor Operator
-    participant MCC
+    participant MCC/GS
     box FINCH
         participant RF
         participant OBC
         participant ADCS
         participant PAY
     end
-    MCC->>RF: Command Downlink
-    RF->>RF: Decode & Verify
-    RF->>OBC: Command
 
-    activate OBC
-    OBC->>OBC: Interpret & Validate
-    OBC->>OBC: Schedule & Prioritize
+    Operator->>MCC/GS: Load "Onboard Processing" command & parameters
+    MCC/GS->>RF: Transmit "Onboard Processing" command & parameters
 
-    alt Attitude Control Required
-        OBC->>ADCS: Attitude Command
-        ADCS->>ADCS: Execute Maneuver
-        ADCS->>OBC: Maneuver Complete
-    end
-
-    alt Payload Operation Required
-        OBC->>PAY: Payload Command
-        PAY->>PAY: Configure & Acquire Data
-        PAY->>OBC: Data Ready
+    alt Contact
+        RF->>OBC: Transmit "Onboard Processing" command & parameters
+        OBC->>OBC: Process
+        OBC-->>OBC: Log Completion
+        OBC->>OBC: Enter "Idle" sequence
+    
+    else Error
+        OBC->>OBC: Log error
+        OBC->>OBC: Enter "Safety" sequence
     end
     
 
