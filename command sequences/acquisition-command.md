@@ -27,22 +27,19 @@ sequenceDiagram
             ADCS-->>OBC: Done
             OBC->>PAY: End image acquisition
             PAY->>PAY: Compress image
+            PAY->>OBC: Image Data
+            OBC->>OBC: Store Image Data
+            OBC-->>OBC: Log Completion
+            OBC->>OBC: Enter "Idle" Sequence
 
 
         else Acquisition conditions could not be met
             OBC->>OBC: Log error
+            OBC->>OBC: Enter "Safety" sequence
 
         end
     end
 
-    alt Contact
-        OBC->>PAY: Send image to RF
-        PAY->>RF: Image data
-        OBC->>RF: Telemetry data
-        OBC->>RF: Trigger downlink
-        RF->>MCC: Data downlink
-        RF-->>OBC: Done
-    end
 
     
 
