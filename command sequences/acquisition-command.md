@@ -29,7 +29,7 @@ sequenceDiagram
             PAY->>PAY: Compress image
             PAY->>OBC: Image Data
             OBC->>OBC: Store Image Data
-            OBC-->>OBC: Log Completion
+            OBC-->>OBC: Done
             OBC->>OBC: Enter "Idle" Sequence
 
 
