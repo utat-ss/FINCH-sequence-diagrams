@@ -3,7 +3,7 @@
 ```mermaid
 sequenceDiagram
     actor Operator
-    participant MCC/GS 
+    participant MCC/GS
     box FINCH
         participant RF
         participant OBC 
@@ -11,24 +11,24 @@ sequenceDiagram
         participant Power
     end
 
-    alt contact
-        OBC->>ADCS: Adjust orientation to sun pointing
-        ADCS->>OBC: Confirm orientation adjusted
-        OBC->>Power: Activate power system
-        Power->>OBC: Report charging status
-   OBC->>RF: Telemetry data
-        OBC->>RF: Trigger downlink
-        RF->>MCC/GS : Data downlink
-        RF-->>OBC: Done
 
-        MCC/GS ->>Operator: Confirm charging initiated
-    else Charging status error
+    OBC->>ADCS: Adjust orientation to sun pointing
+    ADCS-->>OBC: Done
+    ADCS->>OBC: Report attitude telemetry
+    Power->>OBC: Report battery telemetry
+
+
+    Operator->>MCC/GS: Ping FINCH
+    MCC/GS->>RF: Transmit ping
+
+    alt contact
+        RF->>OBC: Transmit ping
+        OBC->>OBC: Enter "Downlinking" sequence with parameter "Telemetry"
+
+    else error
         OBC->>OBC: Log error
-        OBC->>RF: Telemetry data
-        OBC->>RF: Trigger downlink
-        RF->>MCC/GS : Data downlink
-        RF-->>OBC: Done
-        MCC/GS ->>Operator: Report error
+        OBC->>OBC: Enter "Safety" sequence
+
     end
 
 
