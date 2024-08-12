@@ -1,4 +1,4 @@
-# Onboard Processing Sequence
+# Onboard Processing Command Sequence
 ```mermaid
 
 sequenceDiagram
