@@ -3,19 +3,17 @@
 ```mermaid
 
 flowchart
- K(Non-Passive
- Operations)
+ K(Follow-Through Modes)
  Z(Launch and Early Orbit Phase - LEOP) -->
- A{Command} <---> |Critical Priority|B(Imaging)
+ A{Idle} <---> |Critical Priority|B(Imaging)
  A <---> |High Priority|C(Downlinking)
  A <---> |Medium Priority|D(Processing)
- A <---> |Low Priority|E(Charging)
  B --> Y
  C -->Y[Safety]
  D -->Y
  E -->Y
  R[Passive
- Operations]
+ Modes]
  Y --> S(Return to Command)
 style Z fill:#FFFFFF,stroke:#000000,color:#000000
 style A fill:#000000,stroke:#000000,color:#FFFFFF
