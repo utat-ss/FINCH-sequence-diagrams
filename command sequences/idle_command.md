@@ -11,9 +11,6 @@ sequenceDiagram
         participant Power
     end
 
-    Operator->>MCC/GS : Load charging command
-    MCC/GS ->>RF: Transmit charging command 
-    RF->>OBC: Relay command to OBC
     alt contact
         OBC->>ADCS: Adjust orientation to sun pointing
         ADCS->>OBC: Confirm orientation adjusted
