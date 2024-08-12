@@ -1,4 +1,4 @@
-# Image Acquisition Command Sequence
+# Imaging Command Sequence
 ```mermaid
 sequenceDiagram
     Actor Operator
