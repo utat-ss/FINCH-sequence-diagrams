@@ -1,5 +1,5 @@
 
-# Chrging Command Sequence
+# Idle Command Sequence
 ```mermaid
 sequenceDiagram
     actor Operator
