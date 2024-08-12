@@ -2,7 +2,7 @@
 ```mermaid
 sequenceDiagram
     Actor Operator
-    participant MCC
+    participant MCC/GS
     box FINCH
         participant RF
         participant OBC
@@ -27,21 +27,23 @@ sequenceDiagram
             ADCS-->>OBC: Done
             OBC->>PAY: End image acquisition
             PAY->>PAY: Compress image
+            PAY-->>OBC: Done
+            OBC->>OBC: Enter "Idle" Sequence
 
 
         else Acquisition conditions could not be met
             OBC->>OBC: Log error
+            OBC->>OBC: Enter "Idle" sequence
 
         end
     end
 
     alt Contact
         OBC->>PAY: Send image to RF
-        PAY->>RF: Image data
-        OBC->>RF: Telemetry data
-        OBC->>RF: Trigger downlink
-        RF->>MCC: Data downlink
-        RF-->>OBC: Done
+        PAY->>OBC: Image data
+        OBC->>OBC: Store Image Data
+        OBC-->>OBC: Log Completion
+        OBC->>OBC: Enter "Idle" sequence
     end
 
     
