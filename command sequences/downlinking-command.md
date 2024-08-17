@@ -42,8 +42,8 @@ sequenceDiagram
             OBC->>RF: End downlink
             
         else Downlink conditions could not be met
-            OBC->>OBC: Log error
-            OBC->>OBC: Enter "Safety" sequence
+            OBC->>OBC: Log State
+            OBC->>OBC: Enter "Idle" sequence
         end
     
         RF-->>OBC: Done  
