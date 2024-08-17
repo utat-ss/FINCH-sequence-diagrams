@@ -17,7 +17,7 @@ sequenceDiagram
         RF->>OBC: Schedule acquisition
 
         alt Acquisition conditions met
-            OBC->>ADCS: Orient to init attitude
+            OBC->>ADCS: Set to fine pointing mode with attitude parameters
             OBC->>PAY: Cool camera to init temp
             ADCS-->>OBC: Ready
             PAY-->>OBC: Ready
@@ -26,7 +26,6 @@ sequenceDiagram
             OBC->>PAY: Trigger image acquisition
             ADCS-->>OBC: Done
             OBC->>PAY: End image acquisition
-            PAY->>PAY: Compress image
             PAY->>OBC: Image Data
             OBC->>OBC: Store Image Data
             OBC-->>OBC: Done
