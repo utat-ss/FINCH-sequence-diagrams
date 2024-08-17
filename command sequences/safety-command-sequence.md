@@ -4,16 +4,14 @@ sequenceDiagram
     Actor Operator
     participant MCC/GS
     participant RF
+    participant OBC
     participant ADCS
     participant PAY
-    participant POWER
-    participant THERMAL
-    participant MECH
 
     OBC->>PAY: Turn off
     PAY-->>OBC: Done
     OBC->>ADCS: Turn off
-    PAY-->>OBC: Done
+    ADCS-->>OBC: Done
 
     OBC->>OBC: Set into "Safety" state
 
@@ -21,6 +19,6 @@ sequenceDiagram
         OBC->>RF: Transmit error info
         OBC->>RF: Transmit telemetry
         RF->>MCC/GS: Downlink data
-
+    end
     
 ```
