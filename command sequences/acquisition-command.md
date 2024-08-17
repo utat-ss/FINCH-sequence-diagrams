@@ -2,7 +2,7 @@
 ```mermaid
 sequenceDiagram
     Actor Operator
-    participant MCC
+    participant MCC/GS
     box FINCH
         participant RF
         participant OBC
@@ -10,7 +10,7 @@ sequenceDiagram
         participant PAY
     end
 
-    Operator->>MCC: Load acquisition params
+    Operator->>MCC/GS: Load acquisition params
     alt Contact
         MCC->>RF: Send acquisition params
 
