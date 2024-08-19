@@ -19,9 +19,9 @@ sequenceDiagram
     
             alt Acquisition conditions met
                 OBC->>ADCS: Set to fine pointing mode with attitude parameters
-                PAY->>PAY: Cool camera to init temp
+                OBC->>PAY: Cool camera to init temp
                 ADCS-->>OBC: Ready
-                PAY-->>PAY: Ready
+                OBC-->>PAY: Ready
     
                 OBC->>ADCS: Trigger acquisition maneuver
                 OBC->>PAY: Trigger image acquisition
