@@ -10,7 +10,7 @@ sequenceDiagram
 
     OBC->>PAY: Turn off
     PAY-->>OBC: Done
-    OBC->>ADCS: Turn off
+    OBC->>ADCS: Set into "Safety" mode
     ADCS-->>OBC: Done
 
     OBC->>OBC: Set into "Safety" state
