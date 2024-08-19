@@ -15,8 +15,15 @@ sequenceDiagram
 
     OBC->>OBC: Set into "Safety" state
 
+    Operator->>MCC/GS: Set command parameters
+    MCC/GS->>RF: Transmit command parameters
+
     alt Contact
-        OBC->>RF: Transmit error info
+        alt Exit Command Received
+            OBC->>OBC: Enter "Idle" Sequence
+        else Exit Command NOT received
+            OBC->>RF: Transmit error info
+        end 
         OBC->>RF: Transmit telemetry
         RF->>MCC/GS: Downlink data
     end
