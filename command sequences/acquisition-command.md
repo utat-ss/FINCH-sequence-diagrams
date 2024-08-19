@@ -19,17 +19,17 @@ sequenceDiagram
     
             alt Acquisition conditions met
                 OBC->>ADCS: Set to fine pointing mode with attitude parameters
-                OBC->>PAY: Cool camera to init temp
+                PAY->>PAY: Cool camera to init temp
                 ADCS-->>OBC: Ready
-                PAY-->>OBC: Ready
+                PAY-->>PAY: Ready
     
                 OBC->>ADCS: Trigger acquisition maneuver
                 OBC->>PAY: Trigger image acquisition
                 ADCS-->>OBC: Done
                 OBC->>PAY: End image acquisition
-                PAY->>OBC: Image Data
-                OBC->>OBC: Store Image Data
-                OBC->>OBC: Perform Check
+                PAY->>PAY: Store Image Data
+
+                OBC->>OBC: Perform Status Check
     
             else Acquisition conditions could not be met
                 OBC->>OBC: Log status
