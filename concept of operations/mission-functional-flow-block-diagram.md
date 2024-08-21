@@ -2,33 +2,27 @@
 ```mermaid
 sequenceDiagram
     participant LEOP
-    participant Command
-    participant Charging
+    participant Idle
+    participant Imaging
     participant Processing
     participant Downlinking
-    participant Imaging
     participant Safety
 
 
-    LEOP->>Command: Launch, deploy and detumble
+    LEOP->>Idle: Launch, deploy and detumble  
 
-    Command->>Charging: when low battery
-    Charging--)Safety: error/fault
-    Charging->>Command: when batteries are sufficiently charged
-  
-
-    Command->>Imaging: as scheduled by ground
-    Imaging--)Safety: error/fault
-    Imaging->>Command: done with imaging
+    Idle->>Imaging: Scheduled by ground
+    Imaging--)Idle: Done
+    Imaging--)Safety: Error/Fault
 
 
-    Command->>Processing: after imaging terminates
-    Processing--)Safety: error/fault
-    Processing->>Command: done with processing
+    Idle->>Processing: Scheduled by ground
+    Processing--)Safety: Error/Fault
+    Processing--)Idle: Done
     
     
-    Command->>Downlinking: when received command from ground station
-    Downlinking--)Safety: error/fault
-    Downlinking->>Command: done with downlinking
+    Idle->>Downlinking: Command by ground
+    Downlinking--)Safety: Error/Fault
+    Downlinking--)Idle: Done
 
 ```
