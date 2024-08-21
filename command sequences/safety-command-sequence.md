@@ -3,10 +3,12 @@
 sequenceDiagram
     Actor Operator
     participant MCC/GS
-    participant RF
-    participant OBC
-    participant ADCS
-    participant PAY
+    box FINCH
+        participant RF
+        participant OBC
+        participant ADCS
+        participant PAY
+    end
 
     OBC->>PAY: Turn off
     PAY-->>OBC: Done
