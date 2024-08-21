@@ -13,7 +13,7 @@ flowchart
  D -->Y
  R[Passive
  Modes]
- Y --> S(Return to Command)
+ Y --> S(Return to Idle)
 style Z fill:#FFFFFF,stroke:#000000,color:#000000
 style A fill:#000000,stroke:#000000,color:#FFFFFF
 style B fill:#6A0DAD,stroke:#6A0DAD,color:#FFFFFF
