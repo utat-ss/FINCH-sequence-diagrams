@@ -10,8 +10,8 @@ sequenceDiagram
         participant PAY
     end
 
-    Operator->>MCC/GS: Load acquisition params
-    MCC/GS->>RF: Send acquisition params
+    Operator->>MCC/GS: Load acquisition parameters
+    MCC/GS->>RF: Send acquisition parameters
 
     alt Contact
         alt Nominal Sequence Execution
