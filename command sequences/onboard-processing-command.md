@@ -16,7 +16,7 @@ sequenceDiagram
 
     alt Contact
         RF->>OBC: Transmit "Onboard Processing" command & parameters
-        OBC->>OBC: Process
+        OBC->>OBC: Execute
         OBC-->>OBC: Log Completion
         OBC->>OBC: Enter "Idle" sequence
     
