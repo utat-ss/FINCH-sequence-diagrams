@@ -18,7 +18,7 @@ sequenceDiagram
             RF->>OBC: Schedule acquisition
     
             alt Acquisition conditions met
-                OBC->>ADCS: Set to fine pointing mode with attitude parameters
+                OBC->>ADCS: Set to selected ADCS-10m module mode with attitude parameters
                 OBC->>PAY: Cool camera to init temp
                 ADCS-->>OBC: Ready
                 OBC-->>PAY: Ready
