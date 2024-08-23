@@ -29,7 +29,7 @@ sequenceDiagram
                 OBC->>PAY: End image acquisition
                 PAY->>PAY: Store Image Data
 
-                OBC->>OBC: Perform Status Check
+                OBC->>OBC: Enter "Idle" Sequence
     
             else Acquisition conditions could not be met
                 OBC->>OBC: Log status
