@@ -28,7 +28,10 @@ sequenceDiagram
                 alt Downlink telemetry data
                     OBC->>RF: Telemetry data
                     OBC->>RF: Trigger downlink
-                    RF->>MCC/GS: Downlink telemetry data 
+                    RF->>MCC/GS: Downlink telemetry data
+                    RF-->>OBC: Done
+                    OBC->>OBC: Enter "Idle" sequence
+
                 end
     
                 alt Downlink image data
@@ -36,6 +39,11 @@ sequenceDiagram
                     PAY->>RF: Image data
                     OBC->>RF: Trigger downlink
                     RF->>MCC/GS: Downlink image data
+                    RF-->>OBC: Done
+                    OBC->>OBC: Enter "Idle" sequence
+
+
+
                 end
                 
             else Downlink conditions could not be met
@@ -43,7 +51,6 @@ sequenceDiagram
                 OBC->>OBC: Enter "Idle" sequence
             end
         
-            RF-->>OBC: Done  
         end
         else Anomaly
             OBC->>OBC: Log Error
