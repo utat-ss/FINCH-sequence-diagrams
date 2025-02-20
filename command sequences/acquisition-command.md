@@ -2,7 +2,7 @@
 ```mermaid
 sequenceDiagram
     Actor Operator
-    participant MCC
+    participant MCC/GS
     box FINCH
         participant RF
         participant OBC
@@ -10,40 +10,35 @@ sequenceDiagram
         participant PAY
     end
 
-    Operator->>MCC: Load acquisition params
+    Operator->>MCC/GS: Load acquisition parameters
+    MCC/GS->>RF: Send acquisition parameters
+
     alt Contact
-        MCC->>RF: Send acquisition params
+        alt Nominal Sequence Execution
+            RF->>OBC: Schedule acquisition
 
-        RF->>OBC: Schedule acquisition
+            alt Acquisition conditions met
+                OBC->>ADCS: Set to selected ADCS-10m module mode with attitude parameters
+                OBC->>PAY: Cool camera to init temp
+                ADCS-->>OBC: Ready
+                PAY-->>OBC: Ready
+    
+                OBC->>ADCS: Trigger acquisition maneuver
+                OBC->>PAY: Trigger image acquisition
+                ADCS-->>OBC: Done
+                OBC->>PAY: End image acquisition
+                PAY->>PAY: Store Image Data
 
-        alt Acquisition conditions met
-            OBC->>ADCS: Orient to init attitude
-            OBC->>PAY: Cool camera to init temp
-            ADCS-->>OBC: Ready
-            PAY-->>OBC: Ready
+                OBC->>OBC: Enter "Idle" Sequence
 
-            OBC->>ADCS: Trigger acquisition maneuver
-            OBC->>PAY: Trigger image acquisition
-            ADCS-->>OBC: Done
-            OBC->>PAY: End image acquisition
-            PAY->>PAY: Compress image
-
-
-        else Acquisition conditions could not be met
+            else Acquisition conditions could not be met
+                OBC->>OBC: Log status
+                OBC->>OBC: Enter "Idle" Sequence
+            end
+        else Anomaly
             OBC->>OBC: Log error
-
+            OBC->>OBC: Enter "Safety" Sequence
         end
     end
-
-    alt Contact
-        OBC->>PAY: Send image to RF
-        PAY->>RF: Image data
-        OBC->>RF: Telemetry data
-        OBC->>RF: Trigger downlink
-        RF->>MCC: Data downlink
-        RF-->>OBC: Done
-    end
-
-    
 
 ```
